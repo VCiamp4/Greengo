@@ -46,6 +46,11 @@ export function MainMenu({ userName, userEmail }: MainMenuProps) {
     // Aquí podrías actualizar los puntos del usuario
   };
 
+  const handleOpenSettings = () => {
+    console.log('Abriendo configuración...');
+    setShowSettings(true);
+  };
+
   if (showScanner) {
     return (
       <QRScanner 
@@ -98,7 +103,7 @@ export function MainMenu({ userName, userEmail }: MainMenuProps) {
               <span className="absolute top-1 right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
             </button>
             <button 
-              onClick={() => setShowSettings(true)}
+              onClick={handleOpenSettings}
               className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all shadow-md"
             >
               <Settings className="w-6 h-6 text-white" />

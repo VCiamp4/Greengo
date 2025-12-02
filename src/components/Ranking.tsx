@@ -1,4 +1,4 @@
-import { Trophy, Medal, Crown, TrendingUp, Users, ArrowLeft, Zap } from 'lucide-react';
+import { Trophy, Medal, Crown, TrendingUp, Users, ArrowLeft, Zap, UserPlus } from 'lucide-react';
 import { Card } from './ui/card';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { Badge } from './ui/badge';
@@ -31,6 +31,16 @@ export function Ranking({ userName, onBack }: RankingProps) {
     { position: 3, name: 'Carlos Ruiz', points: 350, change: '-1', avatar: 'CR' },
     { position: 4, name: 'María García', points: 320, change: '0', avatar: 'MG' },
     { position: 5, name: 'Laura Martín', points: 290, change: '+3', avatar: 'LM' },
+  ];
+
+  // Datos del ranking de amigos (contactos)
+  const friendsRanking = [
+    { position: 1, name: 'Carlos Ruiz', points: 2640, streak: 38, level: 11, avatar: 'CR', phone: '+34 600 123 456' },
+    { position: 2, name: userName, points: 1250, streak: 12, level: 5, avatar: userName.charAt(0).toUpperCase(), isCurrentUser: true, phone: 'Tu número' },
+    { position: 3, name: 'Laura Martín', points: 1950, streak: 24, level: 8, avatar: 'LM', phone: '+34 600 789 012' },
+    { position: 4, name: 'José Torres', points: 1820, streak: 22, level: 8, avatar: 'JT', phone: '+34 600 345 678' },
+    { position: 5, name: 'Francisco Gil', points: 1120, streak: 15, level: 6, avatar: 'FG', phone: '+34 600 901 234' },
+    { position: 6, name: 'Isabel Ramos', points: 980, streak: 11, level: 5, avatar: 'IR', phone: '+34 600 567 890' },
   ];
 
   const getMedalIcon = (position: number) => {
@@ -116,9 +126,10 @@ export function Ranking({ userName, onBack }: RankingProps) {
       {/* Tabs */}
       <div className="px-6">
         <Tabs defaultValue="global" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6">
+          <TabsList className="grid w-full grid-cols-3 mb-6">
             <TabsTrigger value="global">Global</TabsTrigger>
             <TabsTrigger value="semanal">Semanal</TabsTrigger>
+            <TabsTrigger value="amigos">Amigos</TabsTrigger>
           </TabsList>
 
           {/* Ranking Global */}
@@ -293,6 +304,86 @@ export function Ranking({ userName, onBack }: RankingProps) {
                 </div>
               </Card>
             ))}
+          </TabsContent>
+
+          {/* Ranking de Amigos */}
+          <TabsContent value="amigos" className="space-y-3">
+            <div className="flex items-center justify-between gap-2 mb-4 p-4 bg-purple-50 rounded-xl">
+              <div className="flex items-center gap-2 text-gray-600">
+                <Users className="w-5 h-5 text-purple-600" />
+                <span>Ranking de amigos</span>
+              </div>
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-lg flex items-center gap-2">
+                <UserPlus className="w-4 h-4" />
+                <span className="text-sm">Invitar</span>
+              </button>
+            </div>
+
+            {friendsRanking.map((user) => (
+              <Card 
+                key={user.position}
+                className={`p-4 ${user.isCurrentUser ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-500' : 'bg-white'} shadow-md`}
+              >
+                <div className="flex items-center gap-4">
+                  {/* Medalla o posición */}
+                  <div className="w-10 flex items-center justify-center">
+                    {getMedalIcon(user.position) || (
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-full ${user.isCurrentUser ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gray-100'}`}>
+                        <span className={user.isCurrentUser ? 'text-white' : 'text-gray-700'}>
+                          {user.position}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Avatar */}
+                  <Avatar className={`h-12 w-12 ${user.isCurrentUser ? 'border-2 border-green-500' : ''}`}>
+                    <AvatarFallback className={user.isCurrentUser ? 'bg-green-600 text-white' : 'bg-gray-200'}>
+                      {user.avatar}
+                    </AvatarFallback>
+                  </Avatar>
+
+                  {/* Info */}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className={user.isCurrentUser ? 'text-green-700' : 'text-gray-800'}>
+                        {user.name}
+                      </p>
+                      {user.isCurrentUser && (
+                        <Badge className="bg-green-600 hover:bg-green-600 text-white text-xs">Tú</Badge>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-gray-600 mt-1">
+                      <span>Nivel {user.level}</span>
+                      <span className="flex items-center gap-1">
+                        <Zap className="w-3 h-3 text-orange-500" />
+                        {user.streak} días
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Puntos */}
+                  <div className="text-right">
+                    <p className={user.isCurrentUser ? 'text-green-600' : 'text-gray-700'}>
+                      {user.points}
+                    </p>
+                    <p className="text-xs text-gray-500">puntos</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+            
+            {/* Botón para agregar más amigos */}
+            <Card className="p-6 bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-dashed border-purple-300 text-center">
+              <UserPlus className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+              <h3 className="text-gray-800 mb-2">Invita a tus amigos</h3>
+              <p className="text-gray-600 mb-4">
+                Sincroniza tus contactos o comparte tu código para competir con más amigos
+              </p>
+              <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg">
+                Sincronizar Contactos
+              </button>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>
