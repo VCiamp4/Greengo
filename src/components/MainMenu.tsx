@@ -77,89 +77,108 @@ export function MainMenu({ userName, userEmail }: MainMenuProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 via-emerald-50 to-white pb-32">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 pt-12 pb-8 px-6 rounded-b-3xl shadow-lg">
-        <div className="flex items-center justify-between mb-6">
-          {/* Avatar/Perfil */}
-          <button className="relative">
-            <Avatar className="h-14 w-14 border-2 border-white shadow-lg">
-              <AvatarFallback className="bg-green-700 text-white">
-                {userName.charAt(0).toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
-            <div className="absolute -bottom-1 -right-1 bg-yellow-400 rounded-full p-1 shadow-md">
-              <Award className="w-4 h-4 text-yellow-900" />
-            </div>
-          </button>
-
-          {/* Botones de acción */}
-          <div className="flex gap-3">
-            <button 
-              onClick={() => setShowNotifications(true)}
-              className="relative bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all shadow-md"
-            >
-              <Bell className="w-6 h-6 text-white" />
-              <span className="absolute top-1 right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
-            </button>
-            <button 
-              onClick={handleOpenSettings}
-              className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all shadow-md"
-            >
-              <Settings className="w-6 h-6 text-white" />
-            </button>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 pb-32">
+      {/* Header con glassmorphism */}
+      <div className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 pt-12 pb-8 px-6 rounded-b-[2.5rem] shadow-2xl overflow-hidden">
+        {/* Efectos de fondo animados */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-teal-400/30 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-400/10 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Info del usuario */}
-        <div className="text-white">
-          <h2 className="mb-1">¡Hola, {userName}!</h2>
-          <div className="flex items-center gap-2">
-            <Badge className="bg-white/20 backdrop-blur-sm text-white border-0">
-              <Leaf className="w-3 h-3 mr-1" />
-              Nivel {userLevel}
-            </Badge>
+        <div className="relative z-10">
+          <div className="flex items-center justify-between mb-6">
+            {/* Avatar/Perfil mejorado */}
+            <button className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full blur opacity-40 group-hover:opacity-70 transition duration-300"></div>
+              <Avatar className="relative h-16 w-16 border-3 border-white shadow-2xl ring-4 ring-white/20">
+                <AvatarFallback className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white text-xl">
+                  {userName.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+              <div className="absolute -bottom-1 -right-1 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full p-1.5 shadow-lg ring-2 ring-white">
+                <Award className="w-4 h-4 text-white" />
+              </div>
+            </button>
+
+            {/* Botones de acción mejorados */}
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setShowNotifications(true)}
+                className="relative bg-white/20 backdrop-blur-md p-3.5 rounded-2xl hover:bg-white/30 transition-all shadow-lg border border-white/30 group"
+              >
+                <Bell className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+                <span className="absolute top-2 right-2 w-3 h-3 bg-gradient-to-r from-red-500 to-pink-500 rounded-full border-2 border-white animate-pulse"></span>
+              </button>
+              <button 
+                onClick={handleOpenSettings}
+                className="bg-white/20 backdrop-blur-md p-3.5 rounded-2xl hover:bg-white/30 transition-all shadow-lg border border-white/30 group"
+              >
+                <Settings className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-500" />
+              </button>
+            </div>
+          </div>
+
+          {/* Info del usuario mejorada */}
+          <div className="text-white">
+            <h2 className="mb-2 drop-shadow-lg">¡Hola, {userName}!</h2>
+            <div className="flex items-center gap-2">
+              <Badge className="bg-white/25 backdrop-blur-sm text-white border-0 shadow-lg px-3 py-1">
+                <Leaf className="w-4 h-4 mr-1.5" />
+                Nivel {userLevel}
+              </Badge>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Contenido principal */}
-      <div className="px-6 -mt-8 pb-8">
-        {/* Card de puntos */}
-        <Card className="bg-white shadow-xl border-0 p-6 mb-8">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full mb-4 shadow-lg">
-              <Recycle className="w-12 h-12 text-white animate-[spin_3s_linear_infinite]" />
+      <div className="px-6 -mt-8 pb-8 space-y-6 animate-slide-up">
+        {/* Card de puntos mejorada */}
+        <Card className="relative bg-white shadow-2xl border-0 rounded-3xl p-8 overflow-hidden group hover:shadow-3xl transition-all duration-300">
+          {/* Decoración de fondo */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full blur-3xl opacity-50"></div>
+          
+          <div className="relative text-center">
+            <div className="inline-flex items-center justify-center w-28 h-28 bg-gradient-to-br from-emerald-400 via-green-500 to-teal-600 rounded-full mb-5 shadow-2xl relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+              <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+              <Recycle className="w-14 h-14 text-white animate-[spin_4s_linear_infinite] drop-shadow-lg" />
             </div>
-            <p className="text-gray-600 mb-2">Puntaje Total</p>
-            <div className="flex items-center justify-center gap-2">
-              <h1 className="text-green-600">{totalPoints.toLocaleString()}</h1>
+            <p className="text-gray-600 mb-3">Puntaje Total</p>
+            <div className="flex items-center justify-center gap-3">
+              <h1 className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">{totalPoints.toLocaleString()}</h1>
               <span className="text-green-600">pts</span>
             </div>
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="mt-6 pt-6 border-t border-gray-100">
               <div className="flex items-center justify-center gap-2 text-gray-600">
-                <Trophy className="w-5 h-5 text-yellow-500" />
+                <div className="bg-yellow-100 rounded-full p-2">
+                  <Trophy className="w-5 h-5 text-yellow-600" />
+                </div>
                 <span>Top 15% de recicladores</span>
               </div>
             </div>
           </div>
         </Card>
 
-        {/* Racha Timeline */}
-        <Card className="bg-gradient-to-br from-orange-50 to-amber-50 border-0 shadow-xl mb-8 overflow-hidden">
-          {/* Decoración de fondo */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-orange-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow-200/30 rounded-full blur-2xl"></div>
+        {/* Racha Timeline mejorada */}
+        <Card className="relative bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 border-0 shadow-2xl rounded-3xl overflow-hidden">
+          {/* Decoración de fondo mejorada */}
+          <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-orange-300/30 to-amber-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-br from-yellow-300/20 to-orange-300/10 rounded-full blur-2xl"></div>
           
           <div className="p-6 relative">
-            <div className="flex items-start justify-between mb-6">
+            <div className="flex items-start justify-between mb-8">
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="bg-gradient-to-br from-orange-400 to-red-500 p-2 rounded-xl shadow-lg">
-                    <Flame className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl blur opacity-50"></div>
+                    <div className="relative bg-gradient-to-br from-orange-500 to-red-600 p-3 rounded-2xl shadow-xl">
+                      <Flame className="w-7 h-7 text-white drop-shadow-lg" />
+                    </div>
                   </div>
                   <div>
-                    <h3 className="text-orange-900">{streakDays} días consecutivos</h3>
+                    <h3 className="text-orange-900 mb-1">{streakDays} días consecutivos</h3>
                     <p className="text-orange-600">¡Mantén el ritmo!</p>
                   </div>
                 </div>
@@ -167,33 +186,36 @@ export function MainMenu({ userName, userEmail }: MainMenuProps) {
             </div>
 
             {/* Timeline de la semana mejorado */}
-            <div className="mb-5">
+            <div className="mb-6">
               <div className="flex items-center justify-between">
                 {weekDays.map((day, index) => {
-                  const isToday = index === 4; // Jueves (índice 4) es el día actual
+                  const isToday = index === 4;
                   return (
-                    <div key={index} className="flex flex-col items-center gap-2 relative">
-                      <span className={`${
-                        completedDays[index] ? 'text-green-700' : 'text-gray-500'
-                      } transition-colors`}>
+                    <div key={index} className="flex flex-col items-center gap-3 relative">
+                      <span className={`transition-all duration-300 ${
+                        completedDays[index] ? 'text-green-700 font-semibold' : 'text-gray-400'
+                      }`}>
                         {day}
                       </span>
                       <div 
-                        className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 ${
                           completedDays[index]
-                            ? 'bg-gradient-to-br from-green-400 to-green-600 shadow-lg scale-110'
-                            : 'bg-white border-2 border-dashed border-gray-300'
-                        } ${isToday && completedDays[index] ? 'ring-4 ring-green-200 ring-offset-2' : ''}`}
+                            ? 'bg-gradient-to-br from-green-400 via-emerald-500 to-teal-600 shadow-xl scale-110 hover:scale-125'
+                            : 'bg-white border-3 border-dashed border-gray-300 hover:border-green-300'
+                        } ${isToday && completedDays[index] ? 'ring-4 ring-green-300/50 ring-offset-2 animate-pulse-glow' : ''}`}
                       >
                         {completedDays[index] && (
-                          <Check className="w-6 h-6 text-white drop-shadow-md" />
+                          <>
+                            <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse"></div>
+                            <Check className="relative w-7 h-7 text-white drop-shadow-lg" />
+                          </>
                         )}
                         {!completedDays[index] && isToday && (
-                          <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+                          <div className="w-4 h-4 bg-gradient-to-r from-orange-400 to-red-500 rounded-full animate-pulse shadow-lg"></div>
                         )}
                       </div>
                       {completedDays[index] && (
-                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full border-2 border-orange-50 shadow-sm"></div>
+                        <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full border-2 border-orange-50 shadow-md animate-pulse"></div>
                       )}
                     </div>
                   );

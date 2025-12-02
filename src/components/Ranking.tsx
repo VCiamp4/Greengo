@@ -58,67 +58,87 @@ export function Ranking({ userName, onBack }: RankingProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 via-emerald-50 to-white pb-24">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 pt-12 pb-24 px-6 rounded-b-3xl shadow-lg relative overflow-hidden">
-        {/* Patrón de fondo */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 transform rotate-12">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 pb-24 animate-fade-in">
+      {/* Header mejorado */}
+      <div className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 pt-12 pb-24 px-6 rounded-b-[2.5rem] shadow-2xl overflow-hidden">
+        {/* Patrón de fondo animado */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 right-10 transform rotate-12 animate-float">
             <Trophy className="w-32 h-32" />
           </div>
-          <div className="absolute bottom-10 left-10 transform -rotate-12">
+          <div className="absolute bottom-10 left-10 transform -rotate-12 animate-pulse-glow">
             <Trophy className="w-24 h-24" />
           </div>
         </div>
 
-        <div className="relative">
+        {/* Efectos de luz */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-teal-400/30 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-emerald-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
+        </div>
+
+        <div className="relative z-10">
           <button 
             onClick={onBack}
-            className="mb-6 p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+            className="mb-6 p-3 bg-white/20 backdrop-blur-md rounded-2xl hover:bg-white/30 transition-all shadow-lg border border-white/30 group"
           >
-            <ArrowLeft className="w-6 h-6 text-white" />
+            <ArrowLeft className="w-6 h-6 text-white group-hover:-translate-x-1 transition-transform" />
           </button>
 
           <div className="text-center">
-            <Trophy className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-            <h1 className="text-white mb-2">Ranking de Recicladores</h1>
-            <p className="text-green-50">Compite con otros usuarios</p>
+            <div className="relative inline-block mb-4">
+              <div className="absolute inset-0 bg-yellow-400 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+              <Trophy className="relative w-16 h-16 text-yellow-300 drop-shadow-2xl animate-float" />
+            </div>
+            <h1 className="text-white mb-2 drop-shadow-lg">Ranking de Recicladores</h1>
+            <p className="text-emerald-100 drop-shadow-md">Compite con otros usuarios</p>
           </div>
         </div>
       </div>
 
-      {/* Card de posición del usuario */}
-      <div className="px-6 -mt-16 mb-6">
-        <Card className="bg-gradient-to-br from-green-600 to-emerald-600 border-0 shadow-2xl p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <Avatar className="h-16 w-16 border-2 border-white shadow-lg">
-                <AvatarFallback className="bg-green-700 text-white text-xl">
-                  {userName.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div>
-                <h3 className="text-white mb-1">Tu Posición</h3>
-                <div className="flex items-center gap-2">
-                  <Badge className="bg-white/20 backdrop-blur-sm text-white border-0">
-                    Nivel 5
-                  </Badge>
-                  <div className="flex items-center gap-1">
-                    <Zap className="w-4 h-4 text-yellow-400" />
-                    <span className="text-sm">12 días</span>
+      {/* Card de posición del usuario mejorada */}
+      <div className="px-6 -mt-16 mb-6 animate-slide-up">
+        <Card className="relative bg-gradient-to-br from-emerald-600 via-green-600 to-teal-600 border-0 shadow-2xl rounded-3xl p-6 text-white overflow-hidden">
+          {/* Efectos de fondo */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
+          </div>
+
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full blur opacity-60"></div>
+                  <Avatar className="relative h-16 w-16 border-3 border-white shadow-2xl ring-4 ring-white/30">
+                    <AvatarFallback className="bg-gradient-to-br from-emerald-700 to-teal-800 text-white text-xl">
+                      {userName.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+                <div>
+                  <h3 className="text-white mb-2 drop-shadow-lg">Tu Posición</h3>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-white/25 backdrop-blur-sm text-white border-0 shadow-lg">
+                      Nivel 5
+                    </Badge>
+                    <div className="flex items-center gap-1">
+                      <Zap className="w-4 h-4 text-yellow-300" />
+                      <span className="text-sm">12 días</span>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className="text-right">
+                <div className="text-5xl mb-1 drop-shadow-lg">#8</div>
+                <p className="text-emerald-100 drop-shadow-md">1,250 pts</p>
+              </div>
             </div>
-            <div className="text-right">
-              <div className="text-4xl mb-1">#8</div>
-              <p className="text-green-100 text-sm">1,250 pts</p>
+            
+            <div className="flex items-center gap-2 text-emerald-100 bg-white/10 backdrop-blur-sm rounded-xl p-3">
+              <TrendingUp className="w-5 h-5" />
+              <span>+5 posiciones esta semana</span>
             </div>
-          </div>
-          
-          <div className="flex items-center gap-2 text-green-100">
-            <TrendingUp className="w-5 h-5" />
-            <span>+5 posiciones esta semana</span>
           </div>
         </Card>
       </div>
