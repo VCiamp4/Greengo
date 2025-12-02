@@ -3,7 +3,8 @@ import { Button } from './components/ui/button';
 import { Input } from './components/ui/input';
 import { Label } from './components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/ui/card';
-import { Eye, EyeOff, Lock, Mail, Recycle } from 'lucide-react';
+import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
+import greengoLogo from './assets/greengo-logo.svg';
 import { SignUpScreen } from './components/SignUpScreen';
 import { MainMenu } from './components/MainMenu';
 
@@ -72,7 +73,7 @@ export default function App() {
           <div className="relative inline-block mb-6">
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-3xl blur-xl opacity-60"></div>
             <div className="relative w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl flex items-center justify-center shadow-2xl ring-4 ring-white/20">
-              <Recycle className="w-10 h-10 text-white drop-shadow-lg" />
+              <img src={greengoLogo} alt="GreenGo logo" className="w-10 h-10 drop-shadow-lg" />
             </div>
           </div>
           <h1 className="text-white mb-3 drop-shadow-2xl">Bienvenido</h1>
